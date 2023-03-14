@@ -32,8 +32,8 @@ public class Timer : MonoBehaviour
     public Image progBar;
     float currentValue=0;
     private readonly float speed = 1;
-    public Collider coll;
-    public Rigidbody rb;
+    private Collider coll;
+    private Rigidbody rb;
     
 
 
@@ -42,8 +42,8 @@ public class Timer : MonoBehaviour
     {
 
         scoreText.text = score.ToString();//set score label to score variable
-        //rb = GetComponent<Rigidbody>();
-        //coll = GetComponent<Collider>();
+        rb = GetComponent<Rigidbody>();
+        coll = GetComponent<Collider>();
         difficulty = DifficultyScript.levelint;//get the level value
         currentTime = difficulty * 60;
         progBar.fillAmount = 0;
@@ -100,7 +100,7 @@ public class Timer : MonoBehaviour
 
 
     private void OnCollisionEnter(Collision collision)
-    {
+    {/*
         if(collision.gameObject)
         {
             inside = true;
@@ -119,15 +119,15 @@ public class Timer : MonoBehaviour
             }
 
             progBar.fillAmount = currentValue / 10;
-        }
+        }*/
     }
 
     private void OnCollisionExit(Collision collision)
-    {
+    {/*
         Debug.Log(collision.gameObject.name);
         currentValue = 0;
         progBar.fillAmount = 0;//reset when not inside
-        inside= false;
+        inside= false;*/
 
     }
 
