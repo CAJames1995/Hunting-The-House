@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HuntScript : MonoBehaviour
+public class HouseScript : MonoBehaviour
 {
     //button creation for hunt screen
-    [SerializeField] Button exitButton1;
+    [SerializeField] Button exitButton2;
 
     // Start is called before the first frame update
     void Start()
     {
-        exitButton1.onClick.AddListener(ToMain);
+        exitButton2.onClick.AddListener(ToMain);
     }
 
 

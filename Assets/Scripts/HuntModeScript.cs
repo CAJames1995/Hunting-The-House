@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class HuntModeScript : MonoBehaviour
 {
     //button creation for game mode hunt screen
-    [SerializeField] Button backButton;
+    [SerializeField] Button backButton1;
     [SerializeField] Button startHuntButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        backButton.onClick.AddListener(ToMain);
+        backButton1.onClick.AddListener(ToMain);
         startHuntButton.onClick.AddListener(ToHunt);
 
     }

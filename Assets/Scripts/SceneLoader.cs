@@ -1,5 +1,5 @@
 /*
- *Base code is from Dani Krossing
+ * Base code is by Dani Krossing
  *Found on youtuve titled "CHANGE SCENE WITH BUTTON IN UNITY |Scene Manager in Unity| Learn Unity"
  *https://www.youtube.com/watch?v=jrPTpD2eAMw
 */

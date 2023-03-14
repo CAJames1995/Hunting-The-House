@@ -1418,8 +1418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929555fd6dbdfa44398e194706bf72da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  huntButton: {fileID: 0}
-  houseButton: {fileID: 1751557902}
+  huntButton: {fileID: 864471172}
+  houseButton: {fileID: 664402063}
   statsButton: {fileID: 504247881}
   exitButton: {fileID: 0}
 --- !u!1 &1254651903
