@@ -163,7 +163,6 @@ public class Timer : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Debug.Log(other.gameObject.name);
-        score += 1;
         currentValue = 0;
         progBar.fillAmount = 0;//reset when not inside
         inside = false;
