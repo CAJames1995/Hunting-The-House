@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57638c1494ab2054c829ed8d647866c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 1368785909}
+  backButton1: {fileID: 1368785909}
   startHuntButton: {fileID: 1459574176}
 --- !u!1 &1004491408
 GameObject:

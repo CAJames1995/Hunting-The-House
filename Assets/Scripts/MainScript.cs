@@ -15,15 +15,27 @@ public class MainScript : MonoBehaviour
     void Start()
     {
         huntButton.onClick.AddListener(ToModeHunt);
-        //houseButton.onClick.AddListener();
-        //statsButton.onClick.AddListener();
-        //exitButton.onClick.AddListener();
+        houseButton.onClick.AddListener(ToModeHouse);
+        statsButton.onClick.AddListener(ToStatistics);
+        exitButton.onClick.AddListener(Leave);
     }
 
 
     private void ToModeHunt()//calls hunt gamemode page
     {
         SceneLoader.Instance.LoadModeHunt();
+    }
+    private void ToModeHouse()//calls house gamemode page
+    {
+        SceneLoader.Instance.LoadModeHouse();
+    }
+    private void ToStatistics()//calls statistics page
+    {
+        SceneLoader.Instance.LoadStats();
+    }
+    private void Leave()//exit
+    {
+        Application.Quit();
     }
 
 }
