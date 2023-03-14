@@ -51,14 +51,14 @@ public class Progressbar : MonoBehaviour
         if (coll)
         {
 
-            if (currentValue < 10)
+            if (currentValue < 5)
             {
                 currentValue += speed * Time.deltaTime;
-                progBar.fillAmount = currentValue / 10;
+                progBar.fillAmount = currentValue / 5;
             }
         }
 
-        progBar.fillAmount = currentValue / 10;
+        progBar.fillAmount = currentValue / 5;
     }
 
     private void OnCollisionExit(Collision collision)
