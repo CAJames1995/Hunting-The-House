@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ec63f0c7fced14da9e2ea54a5613ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitButton: {fileID: 1233452412}
+  exitButton1: {fileID: 1233452412}
 --- !u!114 &1024907343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2046,7 +2046,7 @@ GameObject:
   - component: {fileID: 1476718063}
   - component: {fileID: 1476718064}
   m_Layer: 5
-  m_Name: ProgressBar
+  m_Name: Catch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2626,7 +2626,7 @@ RectTransform:
   m_GameObject: {fileID: 1842754555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10.239827, y: 11.235367, z: 11.377586}
+  m_LocalScale: {x: 9.515666, y: 10.440802, z: 10.572964}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1476718062}
@@ -2634,7 +2634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13.3764, y: -18.654}
+  m_AnchoredPosition: {x: -1, y: -6}
   m_SizeDelta: {x: 90.5051, y: 84.2755}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1842754557
@@ -2702,7 +2702,7 @@ RectTransform:
   m_GameObject: {fileID: 1910905510}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -22.45473}
-  m_LocalScale: {x: 8.472688, y: 9.823065, z: 9.823065}
+  m_LocalScale: {x: 12.285398, y: 9.823065, z: 9.823065}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1476718062}
@@ -2710,7 +2710,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 60.90869, y: 111}
+  m_AnchoredPosition: {x: 90.033, y: 111}
   m_SizeDelta: {x: 127.6434, y: 82.5541}
   m_Pivot: {x: 0.5598448, y: 0.65955013}
 --- !u!114 &1910905512
@@ -2733,7 +2733,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6786a172624fd4706a5aeb323922f56e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d1979d663ba94661a5fb3b9e681cda3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
