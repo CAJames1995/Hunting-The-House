@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e70d99bc7ac312e41aae869d6dc585e3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Pubbles: {fileID: 6280686755481753246, guid: 96852930c2f334b4fa23d59c37c71a39,
+      type: 3}
+  - Almond: {fileID: 7331011960772393487, guid: e8877a1614d934cafbe0db592036b9de,
+      type: 3}
+  - RaycastManager: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

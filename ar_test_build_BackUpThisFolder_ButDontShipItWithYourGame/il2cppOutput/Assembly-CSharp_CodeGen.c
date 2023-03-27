@@ -1,0 +1,143 @@
+﻿#include "pch-c.h"
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+extern void ARController_Update_mF6FF933C2A17DE72AFD2353EAD7FCCD46E839127 (void);
+extern void ARController__ctor_mBE98AC7E425756F841ABFC40B93AE409D1489D88 (void);
+extern void AnchorCreator_get_AnchorPrefab_mBBAF7805E9D9F8D79408EE642D153BC76306B25A (void);
+extern void AnchorCreator_set_AnchorPrefab_m53CC9CC3022C713826B44536B48B462C8A1FACFF (void);
+extern void AnchorCreator_RemoveAllAnchors_m6BA302DD9EECA47969FD3F6E5397441DCB09ED21 (void);
+extern void AnchorCreator_Awake_m8820A3F157354D7EDED7B2D7CE2BFA42844F1F8E (void);
+extern void AnchorCreator_Update_mA0A8BCCBAB0AE50DB087524E6273D11F1D6456D0 (void);
+extern void AnchorCreator__ctor_m702B01425680D7FD1C9272A423AAF8A913E5476E (void);
+extern void AnchorCreator__cctor_mDE519BED5D639DA8CD4FA7E389C3D97DF4BA54C4 (void);
+extern void ARFeatheredPlaneMeshVisualizer_get_featheringWidth_m14D3A8BE3E9A745E6FD525B19ADDC892B8399B4D (void);
+extern void ARFeatheredPlaneMeshVisualizer_set_featheringWidth_mD616A09A3B426EA5DE1FA37334DD194E43EEC110 (void);
+extern void ARFeatheredPlaneMeshVisualizer_Awake_mC5DB0414A2514BF4851266C25141C903F0AC57BA (void);
+extern void ARFeatheredPlaneMeshVisualizer_OnEnable_m8781C85CFED871C8A81A5B88DB1031856E0FC9F0 (void);
+extern void ARFeatheredPlaneMeshVisualizer_OnDisable_m2343B05B1A8F14BAD4DD516C584281B66FE6A4E8 (void);
+extern void ARFeatheredPlaneMeshVisualizer_ARPlane_boundaryUpdated_mB3D9BBD14EA1FE3ECDBACC2DB89C1B110B8B6B5F (void);
+extern void ARFeatheredPlaneMeshVisualizer_GenerateBoundaryUVs_mF756D3C1F7925A69CD8C7C8CCE56209AB321FEF5 (void);
+extern void ARFeatheredPlaneMeshVisualizer__ctor_m9A77651BCAE58AA0B994FFF6C6B63B1CFF2729F6 (void);
+extern void ARFeatheredPlaneMeshVisualizer__cctor_m56285A000EE27A1631BE9C5BCDA5C376E5D133C3 (void);
+extern void CharacterSkinController_Start_m2ED8C1A6E85BB027E56927831B3CE2D70DED705A (void);
+extern void CharacterSkinController_Update_mCF4D112C073B01B3FE7116B4BC0CC3F1BCE22AB4 (void);
+extern void CharacterSkinController_ChangeAnimatorIdle_m69F8D0AB6368880AA290801DF0A876F350A46A4B (void);
+extern void CharacterSkinController_ChangeMaterialSettings_m3F16EBBDDD89531F8AC62DDA17F9C43DD518B440 (void);
+extern void CharacterSkinController_ChangeEyeOffset_mAA09AF7A4366ACAA2C0DC73841AA51EE6C2F3337 (void);
+extern void CharacterSkinController__ctor_m75FEE78050A3CE20E7C9C1B65F07C829C8EFFD3C (void);
+extern void MovementInput_Start_m1D5FAC189883D81382193EAA2B4F56ACED03EA2B (void);
+extern void MovementInput_Update_m0055BACF87834EA343CE180B3EAC17C76BCE966E (void);
+extern void MovementInput_PlayerMoveAndRotation_m270E7680034E9AC5D9E78DD8C999849B1F6DC760 (void);
+extern void MovementInput_LookAt_m3E29BDBD662B1332B1EF4337026CEBC75AC2D9F5 (void);
+extern void MovementInput_RotateToCamera_m225D0C464FC78177027BF551A0EC8C075835057B (void);
+extern void MovementInput_InputMagnitude_mF5B1680D73D37A5F526BAA14A2762AD0A587BDBC (void);
+extern void MovementInput__ctor_m43627C0B5ABA724DCC0D588DBD5611014934D02F (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_IsEditorOnly_m59E10A16B0BDEA496377805E39C3D90B1E2C4815 (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_Get_mDAD527916A4779DB4ACAFEADC3BA7372671FA647 (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes__ctor_mE2C680837D47039E3F06032AA8C63FEDB7E783A5 (void);
+static Il2CppMethodPointer s_methodPointers[34] = 
+{
+	ARController_Update_mF6FF933C2A17DE72AFD2353EAD7FCCD46E839127,
+	ARController__ctor_mBE98AC7E425756F841ABFC40B93AE409D1489D88,
+	AnchorCreator_get_AnchorPrefab_mBBAF7805E9D9F8D79408EE642D153BC76306B25A,
+	AnchorCreator_set_AnchorPrefab_m53CC9CC3022C713826B44536B48B462C8A1FACFF,
+	AnchorCreator_RemoveAllAnchors_m6BA302DD9EECA47969FD3F6E5397441DCB09ED21,
+	AnchorCreator_Awake_m8820A3F157354D7EDED7B2D7CE2BFA42844F1F8E,
+	AnchorCreator_Update_mA0A8BCCBAB0AE50DB087524E6273D11F1D6456D0,
+	AnchorCreator__ctor_m702B01425680D7FD1C9272A423AAF8A913E5476E,
+	AnchorCreator__cctor_mDE519BED5D639DA8CD4FA7E389C3D97DF4BA54C4,
+	ARFeatheredPlaneMeshVisualizer_get_featheringWidth_m14D3A8BE3E9A745E6FD525B19ADDC892B8399B4D,
+	ARFeatheredPlaneMeshVisualizer_set_featheringWidth_mD616A09A3B426EA5DE1FA37334DD194E43EEC110,
+	ARFeatheredPlaneMeshVisualizer_Awake_mC5DB0414A2514BF4851266C25141C903F0AC57BA,
+	ARFeatheredPlaneMeshVisualizer_OnEnable_m8781C85CFED871C8A81A5B88DB1031856E0FC9F0,
+	ARFeatheredPlaneMeshVisualizer_OnDisable_m2343B05B1A8F14BAD4DD516C584281B66FE6A4E8,
+	ARFeatheredPlaneMeshVisualizer_ARPlane_boundaryUpdated_mB3D9BBD14EA1FE3ECDBACC2DB89C1B110B8B6B5F,
+	ARFeatheredPlaneMeshVisualizer_GenerateBoundaryUVs_mF756D3C1F7925A69CD8C7C8CCE56209AB321FEF5,
+	ARFeatheredPlaneMeshVisualizer__ctor_m9A77651BCAE58AA0B994FFF6C6B63B1CFF2729F6,
+	ARFeatheredPlaneMeshVisualizer__cctor_m56285A000EE27A1631BE9C5BCDA5C376E5D133C3,
+	CharacterSkinController_Start_m2ED8C1A6E85BB027E56927831B3CE2D70DED705A,
+	CharacterSkinController_Update_mCF4D112C073B01B3FE7116B4BC0CC3F1BCE22AB4,
+	CharacterSkinController_ChangeAnimatorIdle_m69F8D0AB6368880AA290801DF0A876F350A46A4B,
+	CharacterSkinController_ChangeMaterialSettings_m3F16EBBDDD89531F8AC62DDA17F9C43DD518B440,
+	CharacterSkinController_ChangeEyeOffset_mAA09AF7A4366ACAA2C0DC73841AA51EE6C2F3337,
+	CharacterSkinController__ctor_m75FEE78050A3CE20E7C9C1B65F07C829C8EFFD3C,
+	MovementInput_Start_m1D5FAC189883D81382193EAA2B4F56ACED03EA2B,
+	MovementInput_Update_m0055BACF87834EA343CE180B3EAC17C76BCE966E,
+	MovementInput_PlayerMoveAndRotation_m270E7680034E9AC5D9E78DD8C999849B1F6DC760,
+	MovementInput_LookAt_m3E29BDBD662B1332B1EF4337026CEBC75AC2D9F5,
+	MovementInput_RotateToCamera_m225D0C464FC78177027BF551A0EC8C075835057B,
+	MovementInput_InputMagnitude_mF5B1680D73D37A5F526BAA14A2762AD0A587BDBC,
+	MovementInput__ctor_m43627C0B5ABA724DCC0D588DBD5611014934D02F,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_IsEditorOnly_m59E10A16B0BDEA496377805E39C3D90B1E2C4815,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_Get_mDAD527916A4779DB4ACAFEADC3BA7372671FA647,
+	UnitySourceGeneratedAssemblyMonoScriptTypes__ctor_mE2C680837D47039E3F06032AA8C63FEDB7E783A5,
+};
+static const int32_t s_InvokerIndices[34] = 
+{
+	6395,
+	6395,
+	6295,
+	4997,
+	6395,
+	6395,
+	6395,
+	6395,
+	9817,
+	6337,
+	5030,
+	6395,
+	6395,
+	6395,
+	4873,
+	4997,
+	6395,
+	9817,
+	6395,
+	6395,
+	4997,
+	4964,
+	4964,
+	6395,
+	6395,
+	6395,
+	6395,
+	5074,
+	4997,
+	6395,
+	6395,
+	9744,
+	9774,
+	6395,
+};
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
+const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
+{
+	"Assembly-CSharp.dll",
+	34,
+	s_methodPointers,
+	0,
+	NULL,
+	s_InvokerIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};
