@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Security.Cryptography;
 
 
 /* Base code is from Gyanendu Shekhar and Comp-3 Interactive
@@ -25,8 +26,9 @@ public class Timer : MonoBehaviour
     bool active = false, inside=false;
     float currentTime;
     public int startMins;
-    public int score = 0;
-    public int difficulty=5;
+    public  int score = 0;
+    public static int s1 = 0, s2=0, s3=0;
+    public static int difficulty=5;
     public TMP_Text currentTimeText;
     public TMP_Text scoreText;
     public Image progBar;
@@ -62,7 +64,6 @@ public class Timer : MonoBehaviour
             }
             if (inside)
             {
-                scoreText.text = "INSIDE COLLIDER";
 
                 if (currentValue < 10)
                 {
@@ -74,6 +75,12 @@ public class Timer : MonoBehaviour
                     score += 1;
                     progBar.fillAmount = 0;
                     currentValue = 0;
+                    if (difficulty == 5)//easy
+                        s1 = score;
+                    else if (difficulty == 4)//medium
+                        s2 = score;
+                    else //hard
+                        s3 = score;
                 }
 
                 progBar.fillAmount = currentValue / 10;
@@ -99,38 +106,6 @@ public class Timer : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {/*
-        if(collision.gameObject)
-        {
-            inside = true;
-            scoreText.text = "INSIDE COLLIDER";
-
-            if (currentValue < 10)
-            {
-                currentValue += speed * Time.deltaTime;
-                progBar.fillAmount = currentValue / 10;
-            }
-            else
-            {
-                score += 1;
-                progBar.fillAmount = 0;
-                currentValue = 0;
-            }
-
-            progBar.fillAmount = currentValue / 10;
-        }*/
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {/*
-        Debug.Log(collision.gameObject.name);
-        currentValue = 0;
-        progBar.fillAmount = 0;//reset when not inside
-        inside= false;*/
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject)
@@ -147,13 +122,16 @@ public class Timer : MonoBehaviour
             {
                 score += 1;
                 progBar.fillAmount = 0;
-                currentValue = 0;
+                currentValue = 0; 
+                //Destroy(other.gameObject);
             }
 
             progBar.fillAmount = currentValue / 10;
-            
+
         }
-        if (other.gameObject.tag == "Patrick")
+        //if (other.gameObject.tag == "Almond" || other.gameObject.tag == "Pubbles")
+        //if (other.gameObject.tag == "Patrick")
+        if (other.gameObject.CompareTag("Patrick"))
         {
             Debug.Log(other.gameObject.name);
         }

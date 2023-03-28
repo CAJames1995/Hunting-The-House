@@ -27,6 +27,7 @@ public class SceneLoader : MonoBehaviour
         GameModeHouse,
         House,
         Stats,
+
         BlankAR
 
     }
@@ -58,6 +59,8 @@ public class SceneLoader : MonoBehaviour
     public void LoadStats()
     {
         SceneManager.LoadScene(Scene.Stats.ToString());
+    }
+
     }
     public void LoadNextScene()
     {
