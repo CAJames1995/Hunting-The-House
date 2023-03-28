@@ -23,7 +23,7 @@ using System.Security.Cryptography;
 
 public class Timer : MonoBehaviour
 {
-    bool active = false, inside=false;
+    bool active = false, inside=false, isPaused=false;
     float currentTime;
     public int startMins;
     public  int score = 0;
@@ -31,6 +31,7 @@ public class Timer : MonoBehaviour
     public static int difficulty=5;
     public TMP_Text currentTimeText;
     public TMP_Text scoreText;
+    public TMP_Text countdown;
     public Image progBar;
     float currentValue=0;
     private readonly float speed = 1;
@@ -39,10 +40,11 @@ public class Timer : MonoBehaviour
     
 
 
+
     // Start is called before the first frame update
     void Start()
     {
-
+        Countdown();
         scoreText.text = score.ToString();//set score label to score variable
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
@@ -54,12 +56,12 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (active)
         {
             currentTime -= Time.deltaTime;
             if (currentTime <= 0)
             {
-                active= false;
                 Start();
             }
             if (inside)
@@ -88,21 +90,35 @@ public class Timer : MonoBehaviour
 
 
         }
+
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
         scoreText.text = score.ToString();
         currentTimeText.text = time.Minutes.ToString()+":" + time.Seconds.ToString();
-        
-
 
     }
-    public void StartTimer()
-    {   
-        active= true;
 
-    }
-    public void StopTimer()
+    public void Pause()
     {
-        active= false;
+        if (isPaused)
+        {
+            active = true;
+            isPaused = false;
+        }
+        else
+        {
+            active = false;
+            isPaused = true;
+        }
+    }
+
+    public void Countdown()
+    {
+        //countdown.text = "1";
+        //countdown.text = "2";
+        //countdown.text = "3";
+        //countdown.text = "Get Hunting!";
+        active = true;
+        
     }
 
 
