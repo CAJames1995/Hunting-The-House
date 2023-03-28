@@ -9,6 +9,7 @@ public class MainScript : MonoBehaviour
     [SerializeField] Button huntButton;
     [SerializeField] Button houseButton;
     [SerializeField] Button statsButton;
+    [SerializeField] Button scoresButton;
     [SerializeField] Button exitButton;
 
 
@@ -17,6 +18,7 @@ public class MainScript : MonoBehaviour
         huntButton.onClick.AddListener(ToModeHunt);
         houseButton.onClick.AddListener(ToModeHouse);
         statsButton.onClick.AddListener(ToStatistics);
+        scoresButton.onClick.AddListener(ToScores);
         exitButton.onClick.AddListener(Leave);
     }
 
@@ -33,9 +35,14 @@ public class MainScript : MonoBehaviour
     {
         SceneLoader.Instance.LoadStats();
     }
+    private void ToScores()//calls statistics page
+    {
+        SceneLoader.Instance.LoadScores();
+    }
     private void Leave()//exit
     {
         Application.Quit();
     }
+    
 
 }
