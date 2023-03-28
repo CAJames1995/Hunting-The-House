@@ -37,7 +37,8 @@ public class Timer : MonoBehaviour
     private readonly float speed = 1;
     private Collider coll;
     private Rigidbody rb;
-    
+    public GameObject pause;
+    public GameObject play;
 
 
 
@@ -45,6 +46,8 @@ public class Timer : MonoBehaviour
     void Start()
     {
         Countdown();
+        play.SetActive(false);
+        pause.SetActive(true);
         scoreText.text = score.ToString();//set score label to score variable
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
@@ -103,11 +106,15 @@ public class Timer : MonoBehaviour
         {
             active = true;
             isPaused = false;
+            play.SetActive(false);
+            pause.SetActive(true);
         }
         else
         {
             active = false;
             isPaused = true;
+            play.SetActive(true);
+            pause.SetActive(false);
         }
     }
 
