@@ -10,8 +10,8 @@ public class ARController : MonoBehaviour
     public ARRaycastManager RaycastManager;
 
     private float nextActionTime = 0.0f;
-    public float shortperiod = 0.1f;
-    public float longperiod = 0.2f;
+    public float shortperiod = 50000.0f;
+    public float longperiod = 0.1f;
 
 
     //get Random X within a range

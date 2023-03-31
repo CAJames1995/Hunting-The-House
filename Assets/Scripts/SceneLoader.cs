@@ -28,6 +28,7 @@ public class SceneLoader : MonoBehaviour
         House,
         Stats,
         Scores,
+
         BlankAR
 
     }
