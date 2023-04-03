@@ -23,11 +23,10 @@ using System.Security.Cryptography;
 
 public class Timer : MonoBehaviour
 {
-    public static bool active = false, inside=false, isPaused=false;
-    
+    bool active = false, inside=false, isPaused=false;
     float currentTime;
     public int startMins;
-    public int score = 0;
+    public  int score = 0;
     public static int s1 = 0, s2=0, s3=0;
     public static int difficulty=5;
     public TMP_Text currentTimeText;
@@ -38,27 +37,25 @@ public class Timer : MonoBehaviour
     private readonly float speed = 1;
     private Collider coll;
     private Rigidbody rb;
+    public GameObject pause;
+    public GameObject play;
 
-    //public GameObject pause;
-    //public GameObject play;
-    [SerializeField] Button playBttn;
-    public Sprite playb, pauseb;
 
 
     // Start is called before the first frame update
     void Start()
     {
         Countdown();
-        //play.SetActive(false);
-        //pause.SetActive(true);
-        //scoreText.text = score.ToString();//set score label to score variable
+        play.SetActive(false);
+        pause.SetActive(true);
+        scoreText.text = score.ToString();//set score label to score variable
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
         difficulty = DifficultyScript.levelint;//get the level value
         currentTime = difficulty * 60;
         progBar.fillAmount = 0;
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -66,8 +63,11 @@ public class Timer : MonoBehaviour
         if (active)
         {
             currentTime -= Time.deltaTime;
-            
-            /*if (inside)
+            if (currentTime <= 0)
+            {
+                Start();
+            }
+            if (inside)
             {
 
                 if (currentValue < 10)
@@ -89,7 +89,7 @@ public class Timer : MonoBehaviour
                 }
 
                 progBar.fillAmount = currentValue / 10;
-            }*/
+            }
 
 
         }
@@ -100,41 +100,23 @@ public class Timer : MonoBehaviour
 
     }
 
-    /*    public void Pause()
-        {
-            if (isPaused)
-            {
-                active = true;
-                isPaused = false;
-                play.SetActive(false);
-                pause.SetActive(true);
-            }
-            else
-            {
-                active = false;
-                isPaused = true;
-                play.SetActive(true);
-                pause.SetActive(false);
-            }
-        }
-    */
-
-
-    public void SetTimer()
+    public void Pause()
     {
-        if (active)
+        if (isPaused)
+        {
+            active = true;
+            isPaused = false;
+            play.SetActive(false);
+            pause.SetActive(true);
+        }
+        else
         {
             active = false;
-            playBttn.image.sprite = pauseb;
+            isPaused = true;
+            play.SetActive(true);
+            pause.SetActive(false);
         }
-        else {
-            active = true;
-            playBttn.image.sprite = playb;
-
-        } 
     }
-
-    
 
     public void Countdown()
     {
@@ -152,7 +134,7 @@ public class Timer : MonoBehaviour
         if (other.gameObject)
         {
             inside = true;
-            //scoreText.text = "INSIDE COLLIDER";
+            scoreText.text = "INSIDE COLLIDER";
 
             if (currentValue < 10)
             {
@@ -164,7 +146,7 @@ public class Timer : MonoBehaviour
                 score += 1;
                 progBar.fillAmount = 0;
                 currentValue = 0; 
-                Destroy(other.gameObject);
+                //Destroy(other.gameObject);
             }
 
             progBar.fillAmount = currentValue / 10;
