@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Security.Cryptography;
+using System.Threading;
 
 
 /* Base code is from Gyanendu Shekhar and Comp-3 Interactive
@@ -24,9 +25,10 @@ using System.Security.Cryptography;
 public class Timer : MonoBehaviour
 {
     bool active = false, inside=false, isPaused=false;
-    float currentTime;
+    public static bool act;
+    float currentTime, cdtimer;
     public int startMins;
-    public  int score = 0;
+    public int score = 0;
     public static int s1 = 0, s2=0, s3=0;
     public static int difficulty=5;
     public TMP_Text currentTimeText;
@@ -39,13 +41,18 @@ public class Timer : MonoBehaviour
     private Rigidbody rb;
     public GameObject pause;
     public GameObject play;
+    [SerializeField] Button playBttn;
+    public Sprite playb, pauseb;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        countdown.text = "Get Hunting";
         Countdown();
+
+        countdown.text = "";
         play.SetActive(false);
         pause.SetActive(true);
         scoreText.text = score.ToString();//set score label to score variable
@@ -98,6 +105,12 @@ public class Timer : MonoBehaviour
         scoreText.text = score.ToString();
         currentTimeText.text = time.Minutes.ToString()+":" + time.Seconds.ToString();
 
+        if (currentTimeText.text == "0:0")
+        {
+            countdown.text = "Game Over";
+            active= false;
+        }
+
     }
 
     public void Pause()
@@ -108,6 +121,7 @@ public class Timer : MonoBehaviour
             isPaused = false;
             play.SetActive(false);
             pause.SetActive(true);
+            playBttn.image.sprite = playb;
         }
         else
         {
@@ -115,17 +129,30 @@ public class Timer : MonoBehaviour
             isPaused = true;
             play.SetActive(true);
             pause.SetActive(false);
+            playBttn.image.sprite = pauseb;
         }
+        act = active;
     }
 
     public void Countdown()
     {
-        //countdown.text = "1";
-        //countdown.text = "2";
-        //countdown.text = "3";
-        //countdown.text = "Get Hunting!";
+        cdtimer = Time.deltaTime;
+
+        /* countdown.text = "1";
+         if (cdtimer == Time.deltaTime + 1)
+         countdown.text = "2";
+         if (cdtimer == Time.deltaTime + 2)
+             countdown.text = "3";
+         if (cdtimer == Time.deltaTime + 3)
+         countdown.text = "Get Hunting!";
+         if (cdtimer == Time.deltaTime + 4)
+         {
+             countdown.text = "!";
+             active = true;
+         }*/
+        Thread.Sleep(1500);
         active = true;
-        
+
     }
 
 
@@ -134,7 +161,6 @@ public class Timer : MonoBehaviour
         if (other.gameObject)
         {
             inside = true;
-            scoreText.text = "INSIDE COLLIDER";
 
             if (currentValue < 10)
             {
