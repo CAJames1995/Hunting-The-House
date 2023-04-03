@@ -10,8 +10,12 @@ public class ARController : MonoBehaviour
     public ARRaycastManager RaycastManager;
 
     private float nextActionTime = 0.0f;
-    public float shortperiod = 50000.0f;
-    public float longperiod = 0.1f;
+    private float shortperiod = 50000.0f;
+    private float longperiod = 0.1f;
+    private int s = 10, l = 35;
+    private int count=0,limit, elimit = 5, mlimit = 4, hlimit = 3;// spawn limits
+    private int difficulty;
+    private bool act;
 
 
     //get Random X within a range
@@ -38,24 +42,50 @@ public class ARController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        act = Timer.active;
+        difficulty = DifficultyScript.levelint;//get the level value
+        //set limit and spawn speed based on difficulty
+        if (difficulty == 5)//easy
+        {
+            limit = elimit;
+            s= 10;
+            l = 30;
+        }
+        if (difficulty == 4)//med
+        {
+            limit= mlimit;
+            s = 15;
+            l = 45;
+        }
+        else //hard
+        {
+            limit= hlimit;
+            s = 20;
+            l = 50;
+        }
 
         //Random X, Z Spawn. Y remains 5 above plane
         Vector3 randomSpawn = new Vector3(getRandomX(), 5, getRandomZ());
 
+        if (act && (count!=limit)) { 
+            //Goal is to set to 10 Seconds
+            if (Time.time > nextActionTime)
+            {
+                //nextActionTime = Time.time + shortperiod;
+                nextActionTime = Time.time + s;
+                GameObject.Instantiate(Almond, randomSpawn, Quaternion.identity);
+                count++;
+            }
 
-        //Goal is to set to 10 Seconds
-        if (Time.time > nextActionTime)
-        {
-            nextActionTime = Time.time + shortperiod;
-            GameObject.Instantiate(Almond, randomSpawn, Quaternion.identity);
-        }
 
-
-        //Goal is to set to 15 Seconds
-        if (Time.time > nextActionTime)
-        {
-            nextActionTime = Time.time + longperiod;
-            GameObject.Instantiate(Pubbles, randomSpawn, Quaternion.identity);
+            //Goal is to set to 15 Seconds
+            if (Time.time > nextActionTime)
+            {
+                //nextActionTime = Time.time + longperiod;
+                nextActionTime = Time.time + l;
+                GameObject.Instantiate(Pubbles, randomSpawn, Quaternion.identity);
+                count++;
+            }
         }
       
 
