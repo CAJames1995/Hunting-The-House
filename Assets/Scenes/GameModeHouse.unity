@@ -962,13 +962,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Solve 10 riddles!
+  m_text: 'Solve all 5 riddles!
 
-    Think you''ve got the answer? Scan the item to
-    find out and advance to the next level!
+    Think you''ve got the answer? Scan the item
+    to find out and advance to the next level!
 
 
-    Use the skip button to skip riddles.'
+    Use the skip button to skip
+    riddles.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c24fb3acf9b1c4a97b2d65ff27e07387, type: 2}
   m_sharedMaterial: {fileID: -8387016996496278862, guid: c24fb3acf9b1c4a97b2d65ff27e07387,
