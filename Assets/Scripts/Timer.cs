@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Security.Cryptography;
+using System.Threading;
 
 
 /* Base code is from Gyanendu Shekhar and Comp-3 Interactive
@@ -23,31 +24,45 @@ using System.Security.Cryptography;
 
 public class Timer : MonoBehaviour
 {
-    bool active = false, inside=false, isPaused=false;
-    float currentTime;
+    bool active = false, inside=false, isPaused;
+    public static bool act;
+    float currentTime, cdtimer;
     public int startMins;
-    public  int score = 0;
+    public int score = 0;
     public static int s1 = 0, s2=0, s3=0;
     public static int difficulty=5;
     public TMP_Text currentTimeText;
     public TMP_Text scoreText;
-    public TMP_Text countdown;
+    //public TMP_Text gameover;
     public Image progBar;
     float currentValue=0;
     private readonly float speed = 1;
     private Collider coll;
     private Rigidbody rb;
     public GameObject pause;
-    public GameObject play;
+    public Sprite playicon, pauseicon;
+    public GameObject gameoverScreen;
+    public TMP_Text finalScore;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Countdown();
-        play.SetActive(false);
-        pause.SetActive(true);
+
+        //OLD COUNTDOWN CODE
+        //countdown.text = "Get Hunting";
+        //Countdown();
+
+        //gameover.text = "";
+        active = true;
+        isPaused = false;
+        pauseicon = Resources.Load<Sprite>("PauseBttn");
+        playicon = Resources.Load<Sprite>("PlayBttn");
+        gameoverScreen.SetActive(false);
+
+        //play.SetActive(false); //play button object is invisible
+        //pause.SetActive(true); //pause button object is visible
         scoreText.text = score.ToString();//set score label to score variable
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
@@ -98,35 +113,55 @@ public class Timer : MonoBehaviour
         scoreText.text = score.ToString();
         currentTimeText.text = time.Minutes.ToString()+":" + time.Seconds.ToString();
 
+        if (currentTimeText.text == "0:0")
+        {
+            gameoverScreen.SetActive(true);
+            finalScore.text = score.ToString();
+            active = false;
+        }
+
     }
 
     public void Pause()
     {
         if (isPaused)
-        {
+        {//if paused, unpause:
             active = true;
             isPaused = false;
-            play.SetActive(false);
-            pause.SetActive(true);
+
+            pause.GetComponent<Image>().sprite = pauseicon;
         }
         else
-        {
+        {//pause: 
             active = false;
             isPaused = true;
-            play.SetActive(true);
-            pause.SetActive(false);
+
+            pause.GetComponent<Image>().sprite = playicon;
+
         }
+        act = active;
     }
 
-    public void Countdown()
-    {
-        //countdown.text = "1";
-        //countdown.text = "2";
-        //countdown.text = "3";
-        //countdown.text = "Get Hunting!";
-        active = true;
-        
-    }
+    //public void Countdown()
+    //{
+    //    cdtimer = Time.deltaTime;
+
+    //    /* countdown.text = "1";
+    //     if (cdtimer == Time.deltaTime + 1)
+    //     countdown.text = "2";
+    //     if (cdtimer == Time.deltaTime + 2)
+    //         countdown.text = "3";
+    //     if (cdtimer == Time.deltaTime + 3)
+    //     countdown.text = "Get Hunting!";
+    //     if (cdtimer == Time.deltaTime + 4)
+    //     {
+    //         countdown.text = "!";
+    //         active = true;
+    //     }*/
+    //    Thread.Sleep(1500);
+    //    active = true;
+
+    //}
 
 
     private void OnTriggerEnter(Collider other)
@@ -134,7 +169,6 @@ public class Timer : MonoBehaviour
         if (other.gameObject)
         {
             inside = true;
-            scoreText.text = "INSIDE COLLIDER";
 
             if (currentValue < 10)
             {
