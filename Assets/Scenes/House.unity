@@ -724,7 +724,7 @@ GameObject:
   - component: {fileID: 707843740}
   - component: {fileID: 707843739}
   m_Layer: 5
-  m_Name: Riddle
+  m_Name: Riddle count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -770,7 +770,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1/10
+  m_text: '1/5
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8ec92f8bc1ef41d3904523734f1374d, type: 2}
   m_sharedMaterial: {fileID: 7633394089964967404, guid: d8ec92f8bc1ef41d3904523734f1374d,

@@ -26,7 +26,7 @@ public class Timer : MonoBehaviour
 {
     bool active = false, inside=false, isPaused;
     public static bool act;
-    float currentTime, cdtimer;
+    public float currentTime, cdtimer = 0.0f;
     public int startMins;
     public int score = 0;
     public static int s1 = 0, s2=0, s3=0;
@@ -43,23 +43,21 @@ public class Timer : MonoBehaviour
     public Sprite playicon, pauseicon;
     public GameObject gameoverScreen;
     public TMP_Text finalScore;
-
+    public GameObject countdown;
+    public int count = 0;
+    public GameObject huntPrompt;
+    public GameObject barkSound;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
-        //OLD COUNTDOWN CODE
-        //countdown.text = "Get Hunting";
-        //Countdown();
-
-        //gameover.text = "";
-        active = true;
         isPaused = false;
         pauseicon = Resources.Load<Sprite>("PauseBttn");
         playicon = Resources.Load<Sprite>("PlayBttn");
         gameoverScreen.SetActive(false);
+        huntPrompt.SetActive(false);
+        barkSound.SetActive(false);
 
         //play.SetActive(false); //play button object is invisible
         //pause.SetActive(true); //pause button object is visible
@@ -74,14 +72,33 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //COUNTDOWN 3 SECONDS, STARTS GAME ON 4TH SECOND
+        cdtimer = Time.time;
+        count = (int)(cdtimer % 60);
+
+        if (count == 3)
+        {
+            active = true; //START
+            currentTime = difficulty * 60; //reset current time
+            countdown.SetActive(false);
+            huntPrompt.SetActive(true);
+            barkSound.SetActive(true);
+        }
+
+
+
+        if (count == 5)
+        {
+            huntPrompt.SetActive(false);
+        }
 
         if (active)
         {
             currentTime -= Time.deltaTime;
-            if (currentTime <= 0)
-            {
-                Start();
-            }
+            //if (currentTime <= 0)
+            //{
+            //    ();
+            //}
             if (inside)
             {
 
@@ -122,6 +139,7 @@ public class Timer : MonoBehaviour
 
     }
 
+
     public void Pause()
     {
         if (isPaused)
@@ -141,27 +159,6 @@ public class Timer : MonoBehaviour
         }
         act = active;
     }
-
-    //public void Countdown()
-    //{
-    //    cdtimer = Time.deltaTime;
-
-    //    /* countdown.text = "1";
-    //     if (cdtimer == Time.deltaTime + 1)
-    //     countdown.text = "2";
-    //     if (cdtimer == Time.deltaTime + 2)
-    //         countdown.text = "3";
-    //     if (cdtimer == Time.deltaTime + 3)
-    //     countdown.text = "Get Hunting!";
-    //     if (cdtimer == Time.deltaTime + 4)
-    //     {
-    //         countdown.text = "!";
-    //         active = true;
-    //     }*/
-    //    Thread.Sleep(1500);
-    //    active = true;
-
-    //}
 
 
     private void OnTriggerEnter(Collider other)
