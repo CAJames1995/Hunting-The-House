@@ -10,9 +10,7 @@ public class ARController : MonoBehaviour
     public ARRaycastManager RaycastManager;
 
     private float nextActionTime = 0.0f;
-    private float shortperiod = 50000.0f;
-    private float longperiod = 0.1f;
-    private int s = 10, l = 35;
+    private int shortperiod = 10, longperiod = 35;
     private int count = 0, limit, elimit = 5, mlimit = 4, hlimit = 3;// spawn limits
     private int difficulty;
     private bool act;
@@ -48,20 +46,20 @@ public class ARController : MonoBehaviour
         if (difficulty == 5)//easy
         {
             limit = elimit;
-            s = 10;
-            l = 30;
+            shortperiod = 10;
+            longperiod = 30;
         }
         if (difficulty == 4)//med
         {
             limit = mlimit;
-            s = 15;
-            l = 45;
+            shortperiod = 15;
+            longperiod = 45;
         }
         else //hard
         {
             limit = hlimit;
-            s = 20;
-            l = 50;
+            shortperiod = 20;
+            longperiod = 50;
         }
 
         //Random X, Z Spawn. Y remains 5 above plane
@@ -72,8 +70,7 @@ public class ARController : MonoBehaviour
             //Goal is to set to 10 Seconds
             if (Time.time > nextActionTime)
             {
-                //nextActionTime = Time.time + shortperiod;
-                nextActionTime = Time.time + s;
+                nextActionTime = Time.time + shortperiod;
                 GameObject.Instantiate(Almond, randomSpawn, Quaternion.identity);
                 count++;
             }
@@ -82,8 +79,7 @@ public class ARController : MonoBehaviour
             //Goal is to set to 15 Seconds
             if (Time.time > nextActionTime)
             {
-                //nextActionTime = Time.time + longperiod;
-                nextActionTime = Time.time + l;
+                nextActionTime = Time.time + longperiod;
                 GameObject.Instantiate(Pubbles, randomSpawn, Quaternion.identity);
                 count++;
             }
