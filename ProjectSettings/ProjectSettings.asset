@@ -160,7 +160,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.DefaultCompany.AR_Test
-    Standalone: com.DefaultCompany.AR-Test
+    Standalone: com.DefaultCompany.Hunting-the-House
     iPhone: com.DefaultCompany.Hunting-the-House
   buildNumber:
     Standalone: 0
@@ -787,9 +787,9 @@ PlayerSettings:
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
-  allowUnsafeCode: 0
+  allowUnsafeCode: 1
   useDeterministicCompilation: 1
-  selectedPlatform: 3
+  selectedPlatform: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 0
