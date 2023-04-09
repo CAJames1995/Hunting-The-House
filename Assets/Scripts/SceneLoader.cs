@@ -19,17 +19,14 @@ public class SceneLoader : MonoBehaviour
 
     // Creates an index to call the scenes.
     // Ensure this list is the SAME ORDER in BUILD SETTINGS
-    public  enum Scene  
+    public enum Scene  
     {
         Main,
         GameModeHunt,
         Hunt,
         GameModeHouse,
         House,
-        Stats,
         Scores,
-
-        BlankAR
 
     }
 
@@ -57,10 +54,7 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(Scene.GameModeHouse.ToString());
     }
-    public void LoadStats()
-    {
-        SceneManager.LoadScene(Scene.Stats.ToString());
-    }
+  
     public void LoadScores()
     {
         SceneManager.LoadScene(Scene.Scores.ToString());
