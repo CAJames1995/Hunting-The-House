@@ -16,4 +16,44 @@ MonoBehaviour:
   m_GuidHigh: 6813213221020580747
   m_DataStore:
     m_Storage: []
-  m_Images: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 4683832063972493631
+      m_GuidHigh: 7816421527140700291
+    m_SerializedTextureGuid:
+      m_GuidLow: 18249806054304266392
+      m_GuidHigh: 7675017164402137291
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: fan1
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5143185754121092770
+      m_GuidHigh: 7883902392884025498
+    m_SerializedTextureGuid:
+      m_GuidLow: 14525387331106324364
+      m_GuidHigh: 16177063635125753451
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: fan2
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5241712602009797204
+      m_GuidHigh: 3527215753595118780
+    m_SerializedTextureGuid:
+      m_GuidLow: 6806216915940745182
+      m_GuidHigh: 10689709364132448505
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: fan3
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5260062341861950277
+      m_GuidHigh: 17989269166540329627
+    m_SerializedTextureGuid:
+      m_GuidLow: 15209969582384533543
+      m_GuidHigh: 5456902917611393051
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: fan4
+    m_Texture: {fileID: 0}

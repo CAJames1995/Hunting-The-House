@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour
     public static bool act;
     public float currentTime, cdtimer = 0.0f;
     public int startMins;
-    public int score = 0;
+    public int score = 0, catchtime= 10;
     public static int s1 = 0, s2=0, s3=0;
     public static int difficulty=5;
     public TMP_Text currentTimeText;
@@ -67,6 +67,17 @@ public class Timer : MonoBehaviour
         difficulty = DifficultyScript.levelint;//get the level value
         currentTime = difficulty * 60;
         progBar.fillAmount = 0;
+
+        //adjust catch time based on difficulty
+        if (difficulty == 5)//easy
+        {
+            catchtime = 5;
+        }else if (difficulty == 4)//med
+        {
+            catchtime = 7;
+        }else{//hard
+            catchtime = 10;
+        }
     }
 
     // Update is called once per frame
@@ -120,7 +131,7 @@ public class Timer : MonoBehaviour
                         s3 = score;
                 }
 
-                progBar.fillAmount = currentValue / 10;
+                progBar.fillAmount = currentValue / catchtime;
             }
 
 
