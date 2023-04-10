@@ -11,7 +11,7 @@ public class ARController : MonoBehaviour
 
     private float nextActionTime = 0.0f;
     private int shortperiod = 10, longperiod = 35;
-    private int count = 0, limit, elimit = 5, mlimit = 4, hlimit = 3;// spawn limits
+    private int count = 0, limit, elimit = 7, mlimit = 5, hlimit = 4;// spawn limits
     private int difficulty;
     private bool act;
 
@@ -36,10 +36,13 @@ public class ARController : MonoBehaviour
     }
 
 
-
-    // Update is called once per frame
-    private void Update()
+    private void Start()
     {
+        //Random X, Z Spawn. Y remains 5 above plane
+        Vector3 randomSpawn = new Vector3(getRandomX(), 5, getRandomZ());
+        GameObject.Instantiate(Almond, randomSpawn, Quaternion.identity);
+        count++;
+
         //act = Timer.act;
         difficulty = DifficultyScript.levelint;//get the level value
         //set limit and spawn speed based on difficulty
@@ -61,6 +64,12 @@ public class ARController : MonoBehaviour
             shortperiod = 20;
             longperiod = 50;
         }
+    }
+
+
+    // Update is called once per frame
+    private void Update()
+    {
 
         //Random X, Z Spawn. Y remains 5 above plane
         Vector3 randomSpawn = new Vector3(getRandomX(), 5, getRandomZ());

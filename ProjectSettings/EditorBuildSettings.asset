@@ -21,8 +21,11 @@ EditorBuildSettings:
     path: Assets/Scenes/House.unity
     guid: 0971075fc998edb42b9f4dd89f840dcb
   - enabled: 1
-    path: Assets/Scenes/Stats.unity
-    guid: 8db1874dcacb7124f8f748135f0629d3
+    path: Assets/Scenes/Scores.unity
+    guid: 7d57b48bf35955e42b4ea66e1628038a
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
