@@ -24,6 +24,9 @@ using System.Threading;
 
 public class Timer : MonoBehaviour
 {
+
+    public static Timer Instance;
+
     bool active = false, inside=false, isPaused;
     public static bool act;
     public float currentTime, cdtimer = 0.0f;
@@ -39,31 +42,33 @@ public class Timer : MonoBehaviour
     private readonly float speed = 1;
     private Collider coll;
     private Rigidbody rb;
-    public GameObject pause;
+
+    [SerializeField] Button pause;
     public Sprite playicon, pauseicon;
+
     public GameObject gameoverScreen;
     public TMP_Text finalScore;
     public GameObject countdown;
     public int count = 0;
     public GameObject huntPrompt;
     public GameObject barkSound;
+    public Boolean countdownPlay;
 
-    //public bool isPlayerStarted;
-    //public double playtime;
 
     // Start is called before the first frame update
     void Start()
     {
-        //isPlayerStarted = false; 
+
+        pause.onClick.AddListener(Pause);
         isPaused = false;
-        pauseicon = Resources.Load<Sprite>("PauseBttn");
-        playicon = Resources.Load<Sprite>("PlayBttn");
+        //pauseicon = Resources.Load<Sprite>("PauseBttn");
+        //playicon = Resources.Load<Sprite>("PlayBttn");
+
+        countdownPlay = false;
         gameoverScreen.SetActive(false);
         huntPrompt.SetActive(false);
         barkSound.SetActive(false);
 
-        //play.SetActive(false); //play button object is invisible
-        //pause.SetActive(true); //pause button object is visible
         scoreText.text = score.ToString();//set score label to score variable
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
@@ -87,8 +92,11 @@ public class Timer : MonoBehaviour
     void Update()
     {
         //COUNTDOWN 3 SECONDS, STARTS GAME ON 3rd SECOND
-        cdtimer = Time.timeSinceLevelLoad; ;
-        count = (int)(cdtimer % 60);
+        if (countdownPlay == false) { //only plays once
+            cdtimer = Time.timeSinceLevelLoad;
+            count = (int)(cdtimer % 60);
+        }
+        
 
         if (count == 3)
         {
@@ -99,18 +107,11 @@ public class Timer : MonoBehaviour
             barkSound.SetActive(true);
         }
 
-        ////also try:
-        //if (countdown.isPlaying == false)
-        //{
-
-        //}
-
-        //playtime = countdown.GetComponent<VideoPlayer>().clip.length;
-
 
         if (count == 5)
         {
             huntPrompt.SetActive(false);
+            countdownPlay = true;
         }
 
 

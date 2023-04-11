@@ -21,7 +21,7 @@ public class ARController : MonoBehaviour
     {
         float random;
 
-        random = Random.Range(-10, 11);
+        random = Random.Range(-1000, 3000);
         return random;
     }
 
@@ -31,16 +31,37 @@ public class ARController : MonoBehaviour
     {
         float random;
 
-        random = Random.Range(-10, 11);
+        random = Random.Range(-10, 6000);
+        return random;
+    }
+
+    //get Random Y within a range  
+    public float getRandomY()
+    {
+        float random;
+
+        random = Random.Range(-650, 1969);
+        return random;
+    }
+
+    //random Y for ROTATION
+    public float randY()
+    {
+        float random = Random.Range(-110, -189);
         return random;
     }
 
 
+
     private void Start()
     {
-        //Random X, Z Spawn. Y remains 5 above plane
-        Vector3 randomSpawn = new Vector3(getRandomX(), 5, getRandomZ());
-        GameObject.Instantiate(Almond, randomSpawn, Quaternion.identity);
+        ////Random X, Z Spawn. Y remains 5 above plane
+        //Vector3 randomSpawn = new Vector3(getRandomX(), getRandomY(), getRandomZ());
+
+        ////Random Rotation
+        //Quaternion randomRot = new Quaternion(20, randY(), 3, 0);
+        //GameObject.Instantiate(Almond, randomSpawn, randomRot);
+
         count++;
 
         //act = Timer.act;
@@ -72,7 +93,9 @@ public class ARController : MonoBehaviour
     {
 
         //Random X, Z Spawn. Y remains 5 above plane
-        Vector3 randomSpawn = new Vector3(getRandomX(), 5, getRandomZ());
+        Vector3 randomSpawn = new Vector3(getRandomX(), getRandomY(), getRandomZ());
+        //Random Rotation
+        Quaternion randomRot = new Quaternion(20, randY(), 3, 0);
 
         if (count != limit)
         {
@@ -80,7 +103,9 @@ public class ARController : MonoBehaviour
             if (Time.time > nextActionTime)
             {
                 nextActionTime = Time.time + shortperiod;
-                GameObject.Instantiate(Almond, randomSpawn, Quaternion.identity);
+                //GameObject.Instantiate(Almond, randomSpawn, Quaternion.identity);
+                GameObject.Instantiate(Almond, randomSpawn, randomRot);
+
                 count++;
             }
 
@@ -89,7 +114,8 @@ public class ARController : MonoBehaviour
             if (Time.time > nextActionTime)
             {
                 nextActionTime = Time.time + longperiod;
-                GameObject.Instantiate(Pubbles, randomSpawn, Quaternion.identity);
+                //GameObject.Instantiate(Pubbles, randomSpawn, Quaternion.identity);
+                GameObject.Instantiate(Pubbles, randomSpawn, randomRot);
                 count++;
             }
         }
