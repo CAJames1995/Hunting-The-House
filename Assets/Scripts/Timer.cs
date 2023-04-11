@@ -54,6 +54,8 @@ public class Timer : MonoBehaviour
     public GameObject barkSound;
     public Boolean countdownPlay;
 
+    public GameObject dogCaught;
+
 
     // Start is called before the first frame update
     void Start()
@@ -125,13 +127,15 @@ public class Timer : MonoBehaviour
             if (inside)
             {
 
-                if (currentValue < 10)
+                if (currentValue < catchtime)
                 {
                     currentValue += speed * Time.deltaTime;
                     progBar.fillAmount = currentValue / 10;
                 }
                 else
                 {
+                    //caught:
+                    Destroy(dogCaught);
                     score += 1;
                     progBar.fillAmount = 0;
                     currentValue = 0;
@@ -151,9 +155,9 @@ public class Timer : MonoBehaviour
 
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
         scoreText.text = score.ToString();
-        currentTimeText.text = time.Minutes.ToString()+":" + time.Seconds.ToString();
+        currentTimeText.text = time.Minutes.ToString()+":" + string.Format("{1:00}", time.Seconds / 60, time.Seconds % 60);
 
-        if (currentTimeText.text == "0:0")
+        if (currentTimeText.text == "0:00")
         {
             gameoverScreen.SetActive(true);
             finalScore.text = score.ToString();
@@ -189,28 +193,29 @@ public class Timer : MonoBehaviour
         if (other.gameObject)
         {
             inside = true;
+            dogCaught = other.gameObject;
 
-            if (currentValue < 10)
-            {
-                currentValue += speed * Time.deltaTime;
-                progBar.fillAmount = currentValue / 10;
-            }
-            else
-            {
-                score += 1;
-                progBar.fillAmount = 0;
-                currentValue = 0; 
-                //Destroy(other.gameObject);
-            }
+            //    if (currentValue < catchtime)
+            //    {
+            //        currentValue += speed * Time.deltaTime;
+            //        progBar.fillAmount = currentValue / 10;
+            //    }
+            //    else
+            //    {
+            //        score += 1;
+            //        progBar.fillAmount = 0;
+            //        currentValue = 0;
+            //        //Destroy(other.gameObject);
+            //    }
 
-            progBar.fillAmount = currentValue / 10;
+            //    progBar.fillAmount = currentValue / 10;
 
-        }
-        //if (other.gameObject.tag == "Almond" || other.gameObject.tag == "Pubbles")
-        //if (other.gameObject.tag == "Patrick")
-        if (other.gameObject.CompareTag("Patrick"))
-        {
-            Debug.Log(other.gameObject.name);
+            //}
+            ////if (other.gameObject.tag == "Almond" || other.gameObject.tag == "Pubbles")
+            ////if (other.gameObject.tag == "Patrick")
+            //if (other.gameObject.CompareTag("Patrick"))
+            //{
+            //    Debug.Log(other.gameObject.name);
         }
     }
 
