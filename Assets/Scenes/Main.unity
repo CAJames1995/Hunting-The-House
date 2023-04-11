@@ -1333,6 +1333,7 @@ MonoBehaviour:
   huntButton: {fileID: 864471172}
   houseButton: {fileID: 1475553275}
   scoresButton: {fileID: 803564787}
+  settingsButton: {fileID: 1326461671}
 --- !u!1 &1254651903
 GameObject:
   m_ObjectHideFlags: 0

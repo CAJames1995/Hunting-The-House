@@ -27,7 +27,7 @@ public class SceneLoader : MonoBehaviour
         GameModeHouse,
         House,
         Scores,
-
+        Settings,
     }
 
     public void LoadScene(Scene scene)
@@ -59,6 +59,11 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(Scene.Scores.ToString());
     }
+    public void LoadSettings()
+    {
+        SceneManager.LoadScene(Scene.Settings.ToString());
+    }
+
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
