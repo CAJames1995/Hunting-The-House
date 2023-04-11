@@ -55,12 +55,6 @@ public class ARController : MonoBehaviour
 
     private void Start()
     {
-        ////Random X, Z Spawn. Y remains 5 above plane
-        //Vector3 randomSpawn = new Vector3(getRandomX(), getRandomY(), getRandomZ());
-
-        ////Random Rotation
-        //Quaternion randomRot = new Quaternion(20, randY(), 3, 0);
-        //GameObject.Instantiate(Almond, randomSpawn, randomRot);
 
         count++;
 
@@ -81,6 +75,13 @@ public class ARController : MonoBehaviour
         }
         else //hard
         {
+            //Random X, Z Spawn. Y remains 5 above plane
+            Vector3 randomSpawn = new Vector3(getRandomX(), getRandomY(), getRandomZ());
+
+            //Random Rotation
+            Quaternion randomRot = new Quaternion(20, randY(), 3, 0);
+            GameObject.Instantiate(Almond, randomSpawn, randomRot);
+
             limit = hlimit;
             shortperiod = 20;
             longperiod = 50;
