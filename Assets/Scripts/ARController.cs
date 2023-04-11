@@ -10,8 +10,10 @@ public class ARController : MonoBehaviour
     public ARRaycastManager RaycastManager;
 
     private float nextActionTime = 0.0f;
-    public float shortperiod = 0.1f;
-    public float longperiod = 0.2f;
+    private int shortperiod = 10, longperiod = 35;
+    private int count = 0, limit, elimit = 7, mlimit = 5, hlimit = 4;// spawn limits
+    private int difficulty;
+    private bool act;
 
 
     //get Random X within a range
@@ -19,7 +21,7 @@ public class ARController : MonoBehaviour
     {
         float random;
 
-        random = Random.Range(-10, 11);
+        random = Random.Range(-1000, 3000);
         return random;
     }
 
@@ -29,10 +31,62 @@ public class ARController : MonoBehaviour
     {
         float random;
 
-        random = Random.Range(-10, 11);
+        random = Random.Range(-10, 6000);
         return random;
     }
 
+    //get Random Y within a range  
+    public float getRandomY()
+    {
+        float random;
+
+        random = Random.Range(-650, 1969);
+        return random;
+    }
+
+    //random Y for ROTATION
+    public float randY()
+    {
+        float random = Random.Range(-110, -189);
+        return random;
+    }
+
+
+
+    private void Start()
+    {
+
+        count++;
+
+        //act = Timer.act;
+        difficulty = DifficultyScript.levelint;//get the level value
+        //set limit and spawn speed based on difficulty
+        if (difficulty == 5)//easy
+        {
+            limit = elimit;
+            shortperiod = 10;
+            longperiod = 30;
+        }
+        if (difficulty == 4)//med
+        {
+            limit = mlimit;
+            shortperiod = 15;
+            longperiod = 45;
+        }
+        else //hard
+        {
+            //Random X, Z Spawn. Y remains 5 above plane
+            Vector3 randomSpawn = new Vector3(getRandomX(), getRandomY(), getRandomZ());
+
+            //Random Rotation
+            Quaternion randomRot = new Quaternion(20, randY(), 3, 0);
+            GameObject.Instantiate(Almond, randomSpawn, randomRot);
+
+            limit = hlimit;
+            shortperiod = 20;
+            longperiod = 50;
+        }
+    }
 
 
     // Update is called once per frame
@@ -40,24 +94,33 @@ public class ARController : MonoBehaviour
     {
 
         //Random X, Z Spawn. Y remains 5 above plane
-        Vector3 randomSpawn = new Vector3(getRandomX(), 5, getRandomZ());
+        Vector3 randomSpawn = new Vector3(getRandomX(), getRandomY(), getRandomZ());
+        //Random Rotation
+        Quaternion randomRot = new Quaternion(20, randY(), 3, 0);
 
-
-        //Goal is to set to 10 Seconds
-        if (Time.time > nextActionTime)
+        if (count != limit)
         {
-            nextActionTime = Time.time + shortperiod;
-            GameObject.Instantiate(Almond, randomSpawn, Quaternion.identity);
+            //Goal is to set to 10 Seconds
+            if (Time.time > nextActionTime)
+            {
+                nextActionTime = Time.time + shortperiod;
+                //GameObject.Instantiate(Almond, randomSpawn, Quaternion.identity);
+                GameObject.Instantiate(Almond, randomSpawn, randomRot);
+
+                count++;
+            }
+
+
+            //Goal is to set to 15 Seconds
+            if (Time.time > nextActionTime)
+            {
+                nextActionTime = Time.time + longperiod;
+                //GameObject.Instantiate(Pubbles, randomSpawn, Quaternion.identity);
+                GameObject.Instantiate(Pubbles, randomSpawn, randomRot);
+                count++;
+            }
         }
 
-
-        //Goal is to set to 15 Seconds
-        if (Time.time > nextActionTime)
-        {
-            nextActionTime = Time.time + longperiod;
-            GameObject.Instantiate(Pubbles, randomSpawn, Quaternion.identity);
-        }
-      
 
 
 

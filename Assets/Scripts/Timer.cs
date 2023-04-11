@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Security.Cryptography;
+using System.Threading;
 
 
 /* Base code is from Gyanendu Shekhar and Comp-3 Interactive
@@ -22,24 +24,52 @@ using System;
 
 public class Timer : MonoBehaviour
 {
-    bool active = false, inside=false;
-    float currentTime;
+
+    public static Timer Instance;
+
+    bool active = false, inside=false, isPaused;
+    public static bool act;
+    public float currentTime, cdtimer = 0.0f;
     public int startMins;
-    public int score = 0;
-    public int difficulty=5;
+    public int score = 0, catchtime= 10;
+    public static int s1 = 0, s2=0, s3=0;
+    public static int difficulty=5;
     public TMP_Text currentTimeText;
     public TMP_Text scoreText;
+    //public TMP_Text gameover;
     public Image progBar;
     float currentValue=0;
     private readonly float speed = 1;
     private Collider coll;
     private Rigidbody rb;
-    
+
+    [SerializeField] Button pause;
+    public Sprite playicon, pauseicon;
+
+    public GameObject gameoverScreen;
+    public TMP_Text finalScore;
+    public GameObject countdown;
+    public int count = 0;
+    public GameObject huntPrompt;
+    public GameObject barkSound;
+    public Boolean countdownPlay;
+
+    public GameObject dogCaught;
 
 
     // Start is called before the first frame update
     void Start()
     {
+
+        pause.onClick.AddListener(Pause);
+        isPaused = false;
+        //pauseicon = Resources.Load<Sprite>("PauseBttn");
+        //playicon = Resources.Load<Sprite>("PlayBttn");
+
+        countdownPlay = false;
+        gameoverScreen.SetActive(false);
+        huntPrompt.SetActive(false);
+        barkSound.SetActive(false);
 
         scoreText.text = score.ToString();//set score label to score variable
         rb = GetComponent<Rigidbody>();
@@ -47,115 +77,145 @@ public class Timer : MonoBehaviour
         difficulty = DifficultyScript.levelint;//get the level value
         currentTime = difficulty * 60;
         progBar.fillAmount = 0;
+
+        //adjust catch time based on difficulty
+        if (difficulty == 5)//easy
+        {
+            catchtime = 5;
+        }else if (difficulty == 4)//med
+        {
+            catchtime = 7;
+        }else{//hard
+            catchtime = 10;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        //COUNTDOWN 3 SECONDS, STARTS GAME ON 3rd SECOND
+        if (countdownPlay == false) { //only plays once
+            cdtimer = Time.timeSinceLevelLoad;
+            count = (int)(cdtimer % 60);
+        }
+        
+
+        if (count == 3)
+        {
+            active = true; //START
+            currentTime = difficulty * 60; //reset current time
+            countdown.SetActive(false);
+            huntPrompt.SetActive(true);
+            barkSound.SetActive(true);
+        }
+
+
+        if (count == 5)
+        {
+            huntPrompt.SetActive(false);
+            countdownPlay = true;
+        }
+
+
         if (active)
         {
             currentTime -= Time.deltaTime;
-            if (currentTime <= 0)
-            {
-                active= false;
-                Start();
-            }
+            //if (currentTime <= 0)
+            //{
+            //    ();
+            //}
             if (inside)
             {
-                scoreText.text = "INSIDE COLLIDER";
 
-                if (currentValue < 10)
+                if (currentValue < catchtime)
                 {
                     currentValue += speed * Time.deltaTime;
                     progBar.fillAmount = currentValue / 10;
                 }
                 else
                 {
+                    //caught:
+                    Destroy(dogCaught);
                     score += 1;
                     progBar.fillAmount = 0;
                     currentValue = 0;
+                    if (difficulty == 5)//easy
+                        s1 = score;
+                    else if (difficulty == 4)//medium
+                        s2 = score;
+                    else //hard
+                        s3 = score;
                 }
 
-                progBar.fillAmount = currentValue / 10;
+                progBar.fillAmount = currentValue / catchtime;
             }
 
 
         }
+
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
         scoreText.text = score.ToString();
-        currentTimeText.text = time.Minutes.ToString()+":" + time.Seconds.ToString();
-        
+        currentTimeText.text = time.Minutes.ToString()+":" + string.Format("{1:00}", time.Seconds / 60, time.Seconds % 60);
 
-
-    }
-    public void StartTimer()
-    {   
-        active= true;
-
-    }
-    public void StopTimer()
-    {
-        active= false;
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {/*
-        if(collision.gameObject)
+        if (currentTimeText.text == "0:00")
         {
-            inside = true;
-            scoreText.text = "INSIDE COLLIDER";
-
-            if (currentValue < 10)
-            {
-                currentValue += speed * Time.deltaTime;
-                progBar.fillAmount = currentValue / 10;
-            }
-            else
-            {
-                score += 1;
-                progBar.fillAmount = 0;
-                currentValue = 0;
-            }
-
-            progBar.fillAmount = currentValue / 10;
-        }*/
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {/*
-        Debug.Log(collision.gameObject.name);
-        currentValue = 0;
-        progBar.fillAmount = 0;//reset when not inside
-        inside= false;*/
+            gameoverScreen.SetActive(true);
+            finalScore.text = score.ToString();
+            active = false;
+        }
 
     }
+
+
+    public void Pause()
+    {
+        if (isPaused)
+        {//if paused, unpause:
+            active = true;
+            isPaused = false;
+
+            pause.GetComponent<Image>().sprite = pauseicon;
+        }
+        else
+        {//pause: 
+            active = false;
+            isPaused = true;
+
+            pause.GetComponent<Image>().sprite = playicon;
+
+        }
+        act = active;
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject)
         {
             inside = true;
-            scoreText.text = "INSIDE COLLIDER";
+            dogCaught = other.gameObject;
 
-            if (currentValue < 10)
-            {
-                currentValue += speed * Time.deltaTime;
-                progBar.fillAmount = currentValue / 10;
-            }
-            else
-            {
-                score += 1;
-                progBar.fillAmount = 0;
-                currentValue = 0;
-            }
+            //    if (currentValue < catchtime)
+            //    {
+            //        currentValue += speed * Time.deltaTime;
+            //        progBar.fillAmount = currentValue / 10;
+            //    }
+            //    else
+            //    {
+            //        score += 1;
+            //        progBar.fillAmount = 0;
+            //        currentValue = 0;
+            //        //Destroy(other.gameObject);
+            //    }
 
-            progBar.fillAmount = currentValue / 10;
-            
-        }
-        if (other.gameObject.tag == "Patrick")
-        {
-            Debug.Log(other.gameObject.name);
+            //    progBar.fillAmount = currentValue / 10;
+
+            //}
+            ////if (other.gameObject.tag == "Almond" || other.gameObject.tag == "Pubbles")
+            ////if (other.gameObject.tag == "Patrick")
+            //if (other.gameObject.CompareTag("Patrick"))
+            //{
+            //    Debug.Log(other.gameObject.name);
         }
     }
 

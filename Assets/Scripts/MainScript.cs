@@ -8,16 +8,16 @@ public class MainScript : MonoBehaviour
     //button creation for main screen
     [SerializeField] Button huntButton;
     [SerializeField] Button houseButton;
-    [SerializeField] Button statsButton;
-    [SerializeField] Button exitButton;
+    [SerializeField] Button scoresButton;
+    [SerializeField] Button settingsButton;
 
 
     void Start()
     {
         huntButton.onClick.AddListener(ToModeHunt);
         houseButton.onClick.AddListener(ToModeHouse);
-        statsButton.onClick.AddListener(ToStatistics);
-        exitButton.onClick.AddListener(Leave);
+        scoresButton.onClick.AddListener(ToScores);
+        settingsButton.onClick.AddListener(ToSettings);
     }
 
 
@@ -29,13 +29,15 @@ public class MainScript : MonoBehaviour
     {
         SceneLoader.Instance.LoadModeHouse();
     }
-    private void ToStatistics()//calls statistics page
+ 
+    private void ToScores()//calls statistics page
     {
-        SceneLoader.Instance.LoadStats();
+        SceneLoader.Instance.LoadScores();
     }
-    private void Leave()//exit
+
+    private void ToSettings()//calls statistics page
     {
-        Application.Quit();
+        SceneLoader.Instance.LoadSettings();
     }
 
 }
