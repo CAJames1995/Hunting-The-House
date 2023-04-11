@@ -136,6 +136,7 @@ public class Timer : MonoBehaviour
                 {
                     //caught:
                     Destroy(dogCaught);
+                    inside = false;
                     score += 1;
                     progBar.fillAmount = 0;
                     currentValue = 0;

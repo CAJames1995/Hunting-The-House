@@ -8,6 +8,8 @@ public class ARController : MonoBehaviour
     public GameObject Pubbles;
     public GameObject Almond;
     public ARRaycastManager RaycastManager;
+    //public ARPlaneManager plane;
+    //public ARPlane activeplane;
 
     private float nextActionTime = 0.0f;
     private int shortperiod = 10, longperiod = 35;
@@ -16,6 +18,7 @@ public class ARController : MonoBehaviour
     private bool act;
 
 
+    //OLD CODE USING RANDOM POSITION.NOW USING POSITION BASED ON PLANE DETECTED
     //get Random X within a range
     public float getRandomX()
     {
@@ -25,13 +28,12 @@ public class ARController : MonoBehaviour
         return random;
     }
 
-
     //get Random Z within a range //depth 
     public float getRandomZ()
     {
         float random;
 
-        random = Random.Range(-10, 6000);
+        random = Random.Range(100, 6000);
         return random;
     }
 
@@ -44,6 +46,7 @@ public class ARController : MonoBehaviour
         return random;
     }
 
+
     //random Y for ROTATION
     public float randY()
     {
@@ -55,8 +58,10 @@ public class ARController : MonoBehaviour
 
     private void Start()
     {
-
         count++;
+
+        //plane = GetComponent<ARPlaneManager>();
+        //plane.planesChanged += PlaneChanged;
 
         //act = Timer.act;
         difficulty = DifficultyScript.levelint;//get the level value
@@ -75,28 +80,35 @@ public class ARController : MonoBehaviour
         }
         else //hard
         {
-            //Random X, Z Spawn. Y remains 5 above plane
-            Vector3 randomSpawn = new Vector3(getRandomX(), getRandomY(), getRandomZ());
-
-            //Random Rotation
-            Quaternion randomRot = new Quaternion(20, randY(), 3, 0);
-            GameObject.Instantiate(Almond, randomSpawn, randomRot);
-
             limit = hlimit;
             shortperiod = 20;
             longperiod = 50;
         }
     }
 
+    //private void PlaneChanged(ARPlanesChangedEventArgs args)
+    //{
+    //    randomRot = new Quaternion(20, randY(), 3, 0);
+
+    //    if (args.added != null)
+    //    {
+    //        activeplane = args.added[0]; //detect first plane
+            
+    //    }
+    //}
+
 
     // Update is called once per frame
     private void Update()
     {
+        //plane.planesChanged += PlaneChanged;
 
         //Random X, Z Spawn. Y remains 5 above plane
         Vector3 randomSpawn = new Vector3(getRandomX(), getRandomY(), getRandomZ());
         //Random Rotation
         Quaternion randomRot = new Quaternion(20, randY(), 3, 0);
+
+
 
         if (count != limit)
         {
@@ -104,9 +116,8 @@ public class ARController : MonoBehaviour
             if (Time.time > nextActionTime)
             {
                 nextActionTime = Time.time + shortperiod;
-                //GameObject.Instantiate(Almond, randomSpawn, Quaternion.identity);
                 GameObject.Instantiate(Almond, randomSpawn, randomRot);
-
+                //GameObject.Instantiate(Almond, activeplane.transform.position, randomRot);
                 count++;
             }
 
@@ -115,8 +126,8 @@ public class ARController : MonoBehaviour
             if (Time.time > nextActionTime)
             {
                 nextActionTime = Time.time + longperiod;
-                //GameObject.Instantiate(Pubbles, randomSpawn, Quaternion.identity);
                 GameObject.Instantiate(Pubbles, randomSpawn, randomRot);
+                //GameObject.Instantiate(Pubbles, activeplane.transform.position, randomRot);
                 count++;
             }
         }
@@ -126,20 +137,20 @@ public class ARController : MonoBehaviour
 
         //OLD CONTROLS BASED ON TOUCH:
 
-        //if (Input.touchCount>0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        //{
-        //    List<ARRaycastHit> touches = new List<ARRaycastHit>();
-        //    RaycastManager.Raycast(Input.GetTouch(0).position,touches, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            List<ARRaycastHit> touches = new List<ARRaycastHit>();
+            RaycastManager.Raycast(Input.GetTouch(0).position, touches, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
 
-        //    if (touches.Count % 2 == 0)
-        //    {
-        //        GameObject.Instantiate(Pubbles, touches[0].pose.position, touches[0].pose.rotation);
-        //    }
-        //    else
-        //    {
-        //        GameObject.Instantiate(Almond, touches[0].pose.position, touches[0].pose.rotation);
-        //    }
-        //}
+            if (touches.Count % 2 == 0)
+            {
+                GameObject.Instantiate(Pubbles, touches[0].pose.position, touches[0].pose.rotation);
+            }
+            else
+            {
+                GameObject.Instantiate(Almond, touches[0].pose.position, touches[0].pose.rotation);
+            }
+        }
 
 
     }
