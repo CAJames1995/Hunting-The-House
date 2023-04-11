@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 151542757}
   - component: {fileID: 151542759}
   - component: {fileID: 151542758}
-  - component: {fileID: 151542760}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -276,34 +275,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151542756}
   m_CullTransparentMesh: 1
---- !u!114 &151542760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151542756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c4bcb89806fad48abc3177f5af8953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentTime: 0
-  cdtimer: 0
-  startMins: 1
-  score: 0
-  currentTimeText: {fileID: 571995294}
-  scoreText: {fileID: 1271253499}
-  progBar: {fileID: 1842754557}
-  pause: {fileID: 2043755483}
-  playicon: {fileID: 21300000, guid: 34f4415352ee7441bb54ba6666a124c1, type: 3}
-  pauseicon: {fileID: 21300000, guid: 3f63b776a0bec4b44a56e956b329a233, type: 3}
-  gameoverScreen: {fileID: 0}
-  finalScore: {fileID: 0}
-  countdown: {fileID: 0}
-  count: 0
-  huntPrompt: {fileID: 0}
-  barkSound: {fileID: 0}
 --- !u!1 &239967920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,6 +1493,7 @@ MonoBehaviour:
   cdtimer: 0
   startMins: 1
   score: 0
+  catchtime: 10
   currentTimeText: {fileID: 571995294}
   scoreText: {fileID: 1271253499}
   progBar: {fileID: 1842754557}
@@ -3377,7 +3349,6 @@ GameObject:
   - component: {fileID: 2043755486}
   - component: {fileID: 2043755485}
   - component: {fileID: 2043755484}
-  - component: {fileID: 2043755488}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -3499,34 +3470,6 @@ RectTransform:
   m_AnchoredPosition: {x: 705.23444, y: -88.13638}
   m_SizeDelta: {x: 93, y: 79}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2043755488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043755483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c4bcb89806fad48abc3177f5af8953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentTime: 0
-  cdtimer: 0
-  startMins: 1
-  score: 0
-  currentTimeText: {fileID: 571995294}
-  scoreText: {fileID: 1271253499}
-  progBar: {fileID: 1842754557}
-  pause: {fileID: 2043755483}
-  playicon: {fileID: 21300000, guid: 34f4415352ee7441bb54ba6666a124c1, type: 3}
-  pauseicon: {fileID: 21300000, guid: 3f63b776a0bec4b44a56e956b329a233, type: 3}
-  gameoverScreen: {fileID: 0}
-  finalScore: {fileID: 0}
-  countdown: {fileID: 0}
-  count: 0
-  huntPrompt: {fileID: 0}
-  barkSound: {fileID: 0}
 --- !u!1 &2053184914
 GameObject:
   m_ObjectHideFlags: 0

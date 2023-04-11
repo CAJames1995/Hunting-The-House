@@ -48,10 +48,13 @@ public class Timer : MonoBehaviour
     public GameObject huntPrompt;
     public GameObject barkSound;
 
+    //public bool isPlayerStarted;
+    //public double playtime;
 
     // Start is called before the first frame update
     void Start()
     {
+        //isPlayerStarted = false; 
         isPaused = false;
         pauseicon = Resources.Load<Sprite>("PauseBttn");
         playicon = Resources.Load<Sprite>("PlayBttn");
@@ -83,8 +86,8 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //COUNTDOWN 3 SECONDS, STARTS GAME ON 4TH SECOND
-        cdtimer = Time.time;
+        //COUNTDOWN 3 SECONDS, STARTS GAME ON 3rd SECOND
+        cdtimer = Time.timeSinceLevelLoad; ;
         count = (int)(cdtimer % 60);
 
         if (count == 3)
@@ -96,12 +99,20 @@ public class Timer : MonoBehaviour
             barkSound.SetActive(true);
         }
 
+        ////also try:
+        //if (countdown.isPlaying == false)
+        //{
+
+        //}
+
+        //playtime = countdown.GetComponent<VideoPlayer>().clip.length;
 
 
         if (count == 5)
         {
             huntPrompt.SetActive(false);
         }
+
 
         if (active)
         {
