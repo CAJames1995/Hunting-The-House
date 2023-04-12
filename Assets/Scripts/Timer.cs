@@ -55,6 +55,7 @@ public class Timer : MonoBehaviour
     public Boolean countdownPlay;
 
     public GameObject dogCaught;
+    public GameObject prompt;
 
 
     // Start is called before the first frame update
@@ -117,6 +118,7 @@ public class Timer : MonoBehaviour
         }
 
 
+
         if (active)
         {
             currentTime -= Time.deltaTime;
@@ -136,6 +138,7 @@ public class Timer : MonoBehaviour
                 {
                     //caught:
                     Destroy(dogCaught);
+                    prompt.SetActive(false); //remove prompt
                     inside = false;
                     score += 1;
                     progBar.fillAmount = 0;

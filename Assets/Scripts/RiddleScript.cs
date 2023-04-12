@@ -15,16 +15,19 @@ public class RiddleScript : MonoBehaviour
     public TMP_Text riddleText;
     public TMP_InputField answerInput;
     public TMP_Text finalScore;
+    public TMP_Text riddleCount;
   
 
     private Dictionary<string, string> riddles;
     private KeyValuePair<string, string> currentRiddle;
-    private int score;
+    private int score, count;
 
     void Start()
     {
         riddles = LoadRiddlesFromFile("riddles.txt");
         score = 0;
+        //count = 1;
+        riddleCount.text = "";
 
         skipButton.onClick.AddListener(SkipRiddle);
         solveButton.onClick.AddListener(SolveRiddle);
@@ -53,6 +56,7 @@ public class RiddleScript : MonoBehaviour
 
     public void DisplayRandomRiddle()
     {
+
         if (riddles.Count == 0) return;
 
         int randomIndex = UnityEngine.Random.Range(0, riddles.Count);
@@ -60,6 +64,7 @@ public class RiddleScript : MonoBehaviour
         currentRiddle = randomRiddle;
 
         riddleText.text = randomRiddle.Key;
+        //riddleCount.text = count + "/5";
     }
 
     public void RemoveCurrentRiddle()
@@ -69,27 +74,45 @@ public class RiddleScript : MonoBehaviour
 
     public void UpdateScore()
     {
-         score++;
-        int maxScore = 5;
-        finalScore.text = "Score: " + score.ToString() + " / " + maxScore.ToString();
+        score++;
+        finalScore.text = score.ToString();
+
+        //int maxScore = 5;
+        //finalScore.text = "Score: " + score.ToString() + " / " + maxScore.ToString();
     }
 
     public void SkipRiddle()
     {
         RemoveCurrentRiddle();
         DisplayRandomRiddle();
+        riddleCount.text = "Too hard? Try this one.";
+
     }
 
     public void SolveRiddle()
     {
         string submittedAnswer = answerInput.text.Trim();
+
+        //if (submittedAnswer == "")
+        //{
+        //    riddleCount.text = "Try entering a guess first.";
+        //    return;
+        //}
+
         if (submittedAnswer.Equals(currentRiddle.Value, StringComparison.OrdinalIgnoreCase))
         {
+            riddleCount.text = "Nice Job!";
             UpdateScore();
             RemoveCurrentRiddle();
         }
+        else 
+        {
+            riddleCount.text = "That's not it..";
+        }
+
         DisplayRandomRiddle();
         answerInput.text = "";
     }
+
 }
 
