@@ -11,7 +11,6 @@ public class RiddleScript : MonoBehaviour
 {
     [SerializeField] Button skipButton;
     [SerializeField] Button solveButton;
-    // [SerializeField] Button scoresButton;
 
     public TMP_Text riddleText;
     public TMP_InputField answerInput;
