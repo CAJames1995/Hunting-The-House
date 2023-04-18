@@ -15,7 +15,7 @@ public class RiddleScript : MonoBehaviour
     public TMP_Text riddleText;
     public TMP_InputField answerInput;
     public TMP_Text finalScore;
-    public TMP_Text riddleCount;
+    public TMP_Text result;
   
 
     private Dictionary<string, string> riddles;
@@ -27,7 +27,8 @@ public class RiddleScript : MonoBehaviour
         riddles = LoadRiddlesFromFile("riddles.txt");
         score = 0;
         //count = 1;
-        riddleCount.text = "";
+        result.text = "";
+        answerInput.text = "";
 
         skipButton.onClick.AddListener(SkipRiddle);
         solveButton.onClick.AddListener(SolveRiddle);
@@ -85,29 +86,30 @@ public class RiddleScript : MonoBehaviour
     {
         RemoveCurrentRiddle();
         DisplayRandomRiddle();
-        riddleCount.text = "Too hard? Try this one.";
+        result.text = "Too hard? Try this one.";
 
     }
 
     public void SolveRiddle()
     {
-        string submittedAnswer = answerInput.text.Trim();
-
-        //if (submittedAnswer == "")
+        //if (answerInput.text == "" )
         //{
-        //    riddleCount.text = "Try entering a guess first.";
+        //    result.text = "Try entering a guess first.";
         //    return;
         //}
 
-        if (submittedAnswer.Equals(currentRiddle.Value, StringComparison.OrdinalIgnoreCase))
+        string submittedAnswer = answerInput.text.Trim();
+
+
+        if (submittedAnswer.Equals(currentRiddle.Value, StringComparison.OrdinalIgnoreCase) && submittedAnswer != "")
         {
-            riddleCount.text = "Nice Job!";
+            result.text = "Nice Job!";
             UpdateScore();
             RemoveCurrentRiddle();
         }
-        else 
+        else if(submittedAnswer != "")
         {
-            riddleCount.text = "That's not it..";
+            result.text = "That's not it..";
         }
 
         DisplayRandomRiddle();
