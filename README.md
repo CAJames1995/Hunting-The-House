@@ -1,5 +1,6 @@
 # Hunting-The-House
-###### Hunting the house is a Unity AR game created for the University of the West Indies Project Course of Semester 2 of 2023.
+###### Hunting the House is a Unity AR game created for the University of the West Indies Project Course  within the Department of Computing and Information Technology in Semester 2 of 2023. It was produced by a 3 person team with guidance from a supervisor from the department.
+
 ###### The goal of the game is to get people to be more active via phone games while interacting with your home environment using riddles and cute puppy sprites.
 
 
